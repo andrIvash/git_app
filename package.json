@@ -10,10 +10,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "homepage": "https://andrivash.github.io/git-app/",
+  "homepage": "https://andrivash.github.io/git_app/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/andrIvash/git-app.git"
+    "url": "https://github.com/andrIvash/git_app.git"
   },
   "license": "ISC",
   "devDependencies": {
