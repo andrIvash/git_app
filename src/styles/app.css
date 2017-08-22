@@ -1,0 +1,10 @@
+@import 's1.css';
+
+body {
+    background: #586984;
+    color: red;
+}
+
+div {
+    display: flex;
+}
