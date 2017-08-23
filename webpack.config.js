@@ -6,7 +6,7 @@ const webpack = require('webpack');
 config = {
   context: __dirname + "/src",
   entry: {
-    app: ['./js/app.js', './js/events.js']
+    app: ['./js/app.js']
   },
   output: {
     //publicPath: '',        
@@ -20,15 +20,15 @@ config = {
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      chunks: ['app', 'commons'],
+      chunks: ['app'],
       template: './templates/index.pug',
     }),
     new ExtractTextPlugin('assets/styles/[name].bundle.css'),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: "commons",
-      filename: "assets/scripts/commons.js",
-      minChunks: 2
-    })
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: "commons",
+    //   filename: "assets/scripts/commons.js",
+    //   minChunks: 2
+    // })
   ],
   module: {
     rules: [
