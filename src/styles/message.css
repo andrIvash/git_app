@@ -1,0 +1,18 @@
+.messages {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    padding: 5px 10px;
+    max-width: 300px;
+    min-height: 40px;
+    font-family: Courier New, Courier, monospace;
+    font-size: 0.8rem;
+    background-color: #ffffff;
+    transition: display 300ms ease-out;
+}
+.messages_ok {
+    color: #29B769;
+}
+.messages_err {
+    color: #B73027;
+}

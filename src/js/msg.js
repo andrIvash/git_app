@@ -27,10 +27,10 @@ class Message {
        this.msgBox.classList.remove('messages_err');
        this.msgBox.classList.add('messages_ok');
      }
-     this.msgBox.classList.remove('messages_hide');
+     this.msgBox.classList.remove('visually-hidden');
      this.msgBox.innerHTML = msg;
      this.isShow = setTimeout(() => {
-       this.msgBox.classList.add('messages_hide');
+       this.msgBox.classList.add('visually-hidden');
        this.msgBox.innerHTML = '';
      }, 1500);
    }
