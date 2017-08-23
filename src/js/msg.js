@@ -32,7 +32,7 @@ class Message {
      this.isShow = setTimeout(() => {
        this.msgBox.classList.add('messages_hide');
        this.msgBox.innerHTML = '';
-     }, 1000);
+     }, 1500);
    }
 }
 

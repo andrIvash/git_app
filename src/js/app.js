@@ -13,10 +13,19 @@ loginForm.addEventListener('submit', (ev) => {
   ev.preventDefault();
   const validateResult = validation(loginForm);
   if(validateResult.status) {
-    console.log('--- ', 'go');
+    const data = {
+      name: loginForm.querySelector('input[name="username"]').value,
+      type: loginForm.querySelector('input[name="usertype"]:checked').value
+    };
+    console.log(data);
+    //send query
+    get(`https://api.github.com/${data.type}/${data.name}/repos`).then(function(response) {
+      console.log("Success!", response); // success
+    }, function(error) { // error
+      loginMsg.show(error, true);
+    });
   } else {
     console.log('--- ', validateResult.msg);
-    loginMsg.show('error', true);
+    loginMsg.show(validateResult.msg, true);
   }
-
 });
