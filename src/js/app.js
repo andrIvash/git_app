@@ -1,10 +1,10 @@
 import '../styles/app.css';
 import { get } from './getData';
 import {validation} from './validation';
+import Message from './msg';
 
 const loginForm = document.querySelector('#login-form');
-const msgBox = loginForm.querySelector('.messages');
-let showError = null;
+const loginMsg = Message('.login__msg');
 
 /**
  * Login form submit
@@ -16,5 +16,7 @@ loginForm.addEventListener('submit', (ev) => {
     console.log('--- ', 'go');
   } else {
     console.log('--- ', validateResult.msg);
+    loginMsg.show('error', true);
   }
+
 });
