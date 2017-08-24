@@ -5,6 +5,8 @@ body {
     background: #ffffff;
 }
 .wrapper {
+    width: 100%;
+    min-width: 320px;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -16,7 +18,7 @@ body {
     font-family: Courier New, Courier, monospace;
 }
 
-.visually-hidden:not(:focus):not(:active) {
+.visually-hidden { /* :not(:focus):not(:active) */
     position: absolute;
     width: 1px;
     height: 1px;

@@ -10,7 +10,20 @@ export function get(url) {
       // so check the status
       if (req.status == 200) {
         // Resolve the promise with the response text
-        resolve(req.response);
+        const header = req.getResponseHeader('Link');
+        let links = {};
+        if (header !== null) {
+          header.split(',').forEach((elem) => {
+            const link = elem.split(';');
+            links[link[1].replace(/rel=|"/g,'').trim()] = link[0].replace(/[<>]/g,'').trim();
+          }) ;
+        } else {
+          links = null
+        }
+        resolve({
+          response: JSON.parse(req.response),
+          links
+        })
       }
       else {
         // Otherwise reject with the status text
