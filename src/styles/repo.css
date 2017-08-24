@@ -1,0 +1,88 @@
+.repos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.repos__item {
+  padding: 20px 0;
+  border-bottom: 1px #e1e4e8 solid;
+}
+
+.repo {
+  color: #586069;
+  font-family: Helvetica, Arial, sans-serif;
+}
+.repo__title {
+  margin: 0 0 10px 0;
+  font-family: Courier New, Courier, monospace;
+}
+.repo__link, .repo__link:active {
+  color: #337ab7;
+  text-decoration: none;
+  position: relative;
+}
+
+.repo__link::after {
+  content: '';
+  position: absolute;
+  background-color: #337ab7;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  transform: scaleY(0);
+  transition: transform .3s;
+}
+.repo__link:hover::after {
+ transform: scaleY(1)
+}
+.repo__fork {
+ font-size: 0.8rem;
+}
+.repo__fork-link, .repo__fork-link:active {
+  color: #586069;
+  text-decoration: none;
+  margin-left: 5px;
+}
+.repo__fork-link:hover {
+  color: #337ab7;
+}
+.repo__desq {
+  font-size: 0.9rem;
+}
+.repo__footer {
+  font-size: 0.9rem;
+}
+.repo__lang-logo {
+  display: inline-block;
+  width:10px;
+  height:10px;
+  border-radius: 50%;
+}
+.repo__lang {
+  margin-left: 7px;
+}
+.repo__graf-link, repo__graf-link:active {
+  display: inline-block;
+  margin-left: 20px;
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: #586069;
+}
+ .repo__graf-link svg {
+   fill: #586069;
+   vertical-align: bottom;
+ }
+ .repo__forks {
+   vertical-align: top;
+   margin-left: 5px;
+ }
+.repo__graf-link:hover svg{
+  fill: #337ab7;
+}
+.repo__graf-link:hover .repo__forks {
+  color: #337ab7;
+}
+.repo-time {
+  margin-left: 20px;
+}

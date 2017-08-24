@@ -4,16 +4,15 @@
 
 class Message {
   /**
-    * @param {text} containerId
+    * @param {string} containerId
    */
   constructor(containerId) {
      this.msgBox = document.querySelector(containerId);
      this.isShow = null;
   }
-
   /**
    * Show message according with type (error or not)
-   * @param {text} msg
+   * @param {string} msg
    * @param {boolean} errStatus
    */
    show(msg, errStatus) {

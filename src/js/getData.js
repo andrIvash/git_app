@@ -21,7 +21,7 @@ export function get(url) {
           links = null
         }
         resolve({
-          response: JSON.parse(req.response),
+          data: JSON.parse(req.response),
           links
         })
       }
