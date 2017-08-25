@@ -1,6 +1,7 @@
 import '../styles/app.css';
-import { get } from './getData';
+import { getAll, getSample } from './getData';
 import {validation} from './validation';
+import {renderTemplate} from "./render";
 import Message from './msg';
 
 /**
@@ -14,8 +15,145 @@ import Message from './msg';
 const loginForm = document.querySelector('#login-form');
 const loginMsg = Message('.login__msg');
 const loadMoreBtn = document.querySelector('#loadMore');
+let userName = null;
+let userType = null;
 let activeLink = null;
-let activeData = null;
+let activeData = [
+  {
+    name: 'one1',
+    html_url: 'http://one',
+    fork: false,
+    forks_url: 'http://one',
+    description: 'asdasdasdasdasdasdasd',
+    //language: 'JavaScript',
+    stargazers_url: 'http://one',
+    stargazers_count: 0,
+    forks_url: 'http://one',
+    forks: 0,
+    updated_at: '2017-03-05'
+  },
+  {
+    name: 'one2',
+    html_url: 'http://one',
+    fork: true,
+    forks_url: 'http://one',
+    description: 'asdasdasdasdasdasdasd',
+    language: 'PHP',
+    stargazers_url: 'http://one',
+    stargazers_count: '20',
+    forks_url: 'http://one',
+    forks: '1',
+    updated_at: '2017-03-05'
+  },
+  {
+    name: 'one3',
+    html_url: 'http://one',
+    forks_url: 'http://one',
+    description: 'asdasdasdasdasdasdasd',
+    language: 'CSS',
+    stargazers_url: 'http://one',
+    stargazers_count: '20',
+    forks_url: 'http://one',
+    forks: '1',
+    updated_at: '2017-03-05'
+  },
+  {
+    name: 'one4',
+    html_url: 'http://one',
+    forks_url: 'http://one',
+    description: 'asdasdasdasdasdasdasd',
+    language: 'JavaScript',
+    stargazers_url: 'http://one',
+    stargazers_count: '20',
+    forks_url: 'http://one',
+    forks: '1',
+    updated_at: '2017-03-05'
+  },
+  {
+    name: 'one5',
+    html_url: 'http://one',
+    forks_url: 'http://one',
+    description: 'asdasdasdasdasdasdasd',
+    language: 'HTML',
+    stargazers_url: 'http://one',
+    stargazers_count: '20',
+    forks_url: 'http://one',
+    forks: '1',
+    updated_at: '2017-03-05'
+  },
+  {
+    name: 'one6',
+    html_url: 'http://one',
+    forks_url: 'http://one',
+    description: 'asdasdasdasdasdasdasd',
+    language: 'TypeScript',
+    stargazers_url: 'http://one',
+    stargazers_count: '20',
+    forks_url: 'http://one',
+    forks: '1',
+    updated_at: '2017-03-05'
+  },
+  {
+    name: 'one7',
+    html_url: 'http://one',
+    forks_url: 'http://one',
+    description: 'asdasdasdasdasdasdasd',
+    language: 'JavaScript',
+    stargazers_url: 'http://one',
+    stargazers_count: '20',
+    forks_url: 'http://one',
+    forks: '1',
+    updated_at: '2017-03-05'
+  },
+  {
+    name: 'one8',
+    html_url: 'http://one',
+    forks_url: 'http://one',
+    description: 'asdasdasdasdasdasdasd',
+    language: 'JavaScript',
+    stargazers_url: 'http://one',
+    stargazers_count: '20',
+    forks_url: 'http://one',
+    forks: '1',
+    updated_at: '2017-03-05'
+  },
+  {
+    name: 'one9',
+    html_url: 'http://one',
+    forks_url: 'http://one',
+    description: 'asdasdasdasdasdasdasd',
+    language: 'JavaScript',
+    stargazers_url: 'http://one',
+    stargazers_count: '20',
+    forks_url: 'http://one',
+    forks: '1',
+    updated_at: '2017-03-05'
+  },
+  {
+    name: 'one10',
+    html_url: 'http://one',
+    forks_url: 'http://one',
+    description: 'asdasdasdasdasdasdasd',
+    language: 'JavaScript',
+    stargazers_url: 'http://one',
+    stargazers_count: '20',
+    forks_url: 'http://one',
+    forks: '1',
+    updated_at: '2017-03-05'
+  },
+  {
+    name: 'one11',
+    html_url: 'http://one',
+    forks_url: 'http://one',
+    description: 'asdasdasdasdasdasdasd',
+    language: 'JavaScript',
+    stargazers_url: 'http://one',
+    stargazers_count: '20',
+    forks_url: 'http://one',
+    forks: '1',
+    updated_at: '2017-03-05'
+  }
+];
 
 /**
  * Login form submit
@@ -24,12 +162,10 @@ loginForm.addEventListener('submit', (ev) => {
   ev.preventDefault();
   const validateResult = validation(loginForm);
   if(validateResult.status) {
-    const data = {
-      name: loginForm.querySelector('input[name="username"]').value,
-      type: loginForm.querySelector('input[name="usertype"]:checked').value
-    };
-    console.log(data);
-    getData(`https://api.github.com/${data.type}/${data.name}/repos?per_page=30`)
+    userName = loginForm.querySelector('input[name="username"]').value;
+    userType = loginForm.querySelector('input[name="usertype"]:checked').value;
+    //getData(`https://api.github.com/${userType}/${userName}/repos?per_page=20`) //per_page=  - number of repos per list
+    renderTemplate('.projects__list', activeData);
   } else {
     console.error('--- ', validateResult.msg);
     loginMsg.show(validateResult.msg, true);
@@ -42,36 +178,48 @@ loginForm.addEventListener('submit', (ev) => {
  */
 function getData(url) {
     //send query
-    get(url).then(function(response) {
-      console.log("Success!", response); // success
-      activeData = response.data;
+    //TODO: show loader
+    getAll(url).then(response => {
+      /**
+       * success
+       * @type {Object} response
+       * @type {Array} data // list of the repos
+       * @type {Object} links // link to active and next pages
+       */
+      const {data} = response;
+      data.forEach(repo => { // add additional data for forked repo's
+        if (repo.fork) {
+          getSample(`https://api.github.com/repos/${userName}/${repo.name}`).then(res => {
+            repo.info = res.data;
+          }, err => Error(err));
+        }
+      });
+      return response;
+    }).then((response) => {
+      //TODO hide loader
+      console.log('--- ', response);
+      const {links, data} = response;
+      activeData = activeData.concat(data);
+      console.log('--- ', activeData);
+      isEndOfList(links);
       renderTemplate('.projects__list', activeData);
-      if (response.links !== null && response.links.next) {
-        loadMoreBtn.classList.remove('visually-hidden');
-        activeLink = response.links.next;
-      } else { // no more data
-        loadMoreBtn.classList.add('visually-hidden');
-        activeLink = null;
-      }
-    }, function(error) { // error
-      console.error('--- ', 'bad request');
+    }).catch(error => { //error
+      console.error(error);
       loginMsg.show(error, true);
     });
 }
 
 /**
- * Render Repository Template
- * @param {String} container
- * @param {Array} data
+ * Check the end of fetched repo's list
+ * @param {Object }links
  */
-function renderTemplate(container, data) {
-  const wrapper = document.querySelector(container);
-  var fragment = document.createDocumentFragment();
-  const template = document.querySelector('#repo-template');
-  data.forEach(repo => {
-    let element = template.content.children[0].cloneNode(true);
-    element.querySelector('.repo__title').innerHTML = repo.name;
-    fragment.appendChild(element);
-  });
-  wrapper.appendChild(fragment);
+function isEndOfList(links) {
+  if (links !== null && links.next) {
+    loadMoreBtn.classList.remove('visually-hidden');
+    activeLink = links.next;
+  } else { // no more data - hide button
+    loadMoreBtn.classList.add('visually-hidden');
+    activeLink = null;
+  }
 }
+

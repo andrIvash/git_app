@@ -2,3 +2,6 @@
     width: 100%;
     max-width: 600px;
 }
+.projects__section {
+    padding: 0 10px;
+}

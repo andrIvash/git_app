@@ -12,9 +12,10 @@
   color: #586069;
   font-family: Helvetica, Arial, sans-serif;
 }
+
 .repo__title {
-  margin: 0 0 10px 0;
   font-family: Courier New, Courier, monospace;
+  margin: 0 0 10px 0;
 }
 .repo__link, .repo__link:active {
   color: #337ab7;
@@ -42,7 +43,6 @@
 .repo__fork-link, .repo__fork-link:active {
   color: #586069;
   text-decoration: none;
-  margin-left: 5px;
 }
 .repo__fork-link:hover {
   color: #337ab7;
@@ -62,27 +62,26 @@
 .repo__lang {
   margin-left: 7px;
 }
-.repo__graf-link, repo__graf-link:active {
+.repo__graf-link, repo__graf-link:active, .repo__star-link,  .repo__star-link:active{
   display: inline-block;
-  margin-left: 20px;
+  margin: 0 10px;
   font-size: 0.9rem;
   text-decoration: none;
   color: #586069;
 }
- .repo__graf-link svg {
+ .repo__graf-link svg, .repo__star-link svg {
    fill: #586069;
    vertical-align: bottom;
  }
- .repo__forks {
+ .repo__forks, .repo__stars {
    vertical-align: top;
    margin-left: 5px;
  }
-.repo__graf-link:hover svg{
+.repo__graf-link:hover svg, .repo__star-link:hover svg{
   fill: #337ab7;
 }
-.repo__graf-link:hover .repo__forks {
+.repo__graf-link:hover .repo__forks, .repo__star-link:hover .repo__stars {
   color: #337ab7;
 }
 .repo-time {
-  margin-left: 20px;
 }
