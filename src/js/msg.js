@@ -31,7 +31,7 @@ class Message {
      this.isShow = setTimeout(() => {
        this.msgBox.classList.add('visually-hidden');
        this.msgBox.innerHTML = '';
-     }, 1500);
+     }, 1600);
    }
 }
 

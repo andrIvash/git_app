@@ -4,8 +4,13 @@
   padding: 0;
 }
 .repos__item {
-  padding: 20px 0;
+  padding: 20px 10px;
   border-bottom: 1px #e1e4e8 solid;
+  cursor: pointer;
+}
+
+.repos__item:focus, .repos__item:hover {
+  box-shadow: -1px -1px 9px 1px rgba(0,0,0,0.08);
 }
 
 .repo {
@@ -23,6 +28,8 @@
   position: relative;
 }
 
+
+
 .repo__link::after {
   content: '';
   position: absolute;
@@ -39,6 +46,9 @@
 }
 .repo__fork {
  font-size: 0.8rem;
+  color: orange;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 .repo__fork-link, .repo__fork-link:active {
   color: #586069;
@@ -60,7 +70,7 @@
   border-radius: 50%;
 }
 .repo__lang {
-  margin-left: 7px;
+  margin: 0 10px 0 0;
 }
 .repo__graf-link, repo__graf-link:active, .repo__star-link,  .repo__star-link:active{
   display: inline-block;

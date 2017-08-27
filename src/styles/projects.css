@@ -5,3 +5,8 @@
 .projects__section {
     padding: 0 10px;
 }
+.projects__link, .projects__link:active {
+    margin: 15px 0;
+    text-align: center;
+    text-decoration: none;
+}

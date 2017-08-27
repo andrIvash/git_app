@@ -17,8 +17,9 @@ block main
                 label.login__label(for = "u-name") User
                 input.login__radio(type = "radio", name = "usertype", id = "c-name" value = "orgs")
                 label.login__label(for = "c-name") Company
-            button.login__btn(type = "submit") Send
-            .messages.visually-hidden.login__msg
+            button.btn.login__btn(type = "submit") Send
+
 
         include components/projects
-    //include common/template
+    button.btn.back-btn.visually-hidden New search
+    .messages.visually-hidden

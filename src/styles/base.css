@@ -5,6 +5,7 @@ body {
     background: #ffffff;
 }
 .wrapper {
+    position: relative;
     width: 100%;
     min-width: 320px;
     min-height: 100vh;
@@ -31,3 +32,40 @@ body {
     overflow: hidden;
 }
 
+.btn {
+    display: block;
+    padding: 7px 20px;
+    border: 2px solid #337ab7;
+    color: #337ab7;
+    background-color: rgba(51, 122, 183, 0.30);
+    font-family: Courier New, Courier, monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    transition: background-color, color 300ms ease-out;
+}
+.btn:hover {
+    cursor: pointer;
+    background-color: rgba(51, 122, 183, 0.75);
+    color: #ffffff;
+}
+
+
+.back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 15px;
+}
+.messages{
+    position: fixed;
+    top: 50px;
+    left: 5px;
+    padding: 15px;
+    border: 1px solid #e9bbad;
+    border-radius: 4px;
+    color: #f0cdbb;
+    background-color: #c3625e;
+    font-size: 0.8rem;
+    font-family: Courier New, Courier, monospace;
+    font-weight: 700;
+}
