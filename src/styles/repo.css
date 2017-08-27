@@ -11,6 +11,7 @@
 
 .repos__item:focus, .repos__item:hover {
   box-shadow: -1px -1px 9px 1px rgba(0,0,0,0.08);
+  outline: none;
 }
 
 .repo {
