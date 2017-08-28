@@ -1,0 +1,57 @@
+.filters {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    min-width: 320px;
+    font-family: Courier New, Courier, monospace;
+    color: #337ab7;
+}
+
+.filters__legend {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.filters__block-title {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.filters__fieldeset {
+    width: 40%;
+    border: 2px solid #337ab7;
+    margin-bottom: 15px;
+    font-size: 2rem;
+    font-weight: 700;
+
+
+}
+
+.filters__label {
+    font-size: 0.9rem;
+    font-weight: 300;
+    cursor: pointer;
+}
+
+.filters__input {
+    width: 25px;
+    color: #333;
+    border: 1px solid #337ab7;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+.filters__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.filters__item {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.filters__block-title {
+    margin-top: 10px ;
+}
