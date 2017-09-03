@@ -56,15 +56,25 @@ export function renderTemplate(container, data, single) {
               <a class="repo__link" href="${data.html_url}">${data.name}</a>
           </h3>
           <div class="${data.fork ? 'repo__fork': 'visually-hidden'}">Forked from   
-              <a class="repo__fork-link" href="${data.forks_url}">${data.name} </a>
+              <a class="repo__fork-link" href="${data.addinfo.fork.url}">${data.addinfo.fork.name} </a>
           </div>
         </header>
         <main class="repo__main">
           <p class="${data.description ? 'repo__desq': 'visually-hidden'}">${data.description}</p>
         </main>
         <footer class="repo__footer">
-          <span class="${data.language ? 'repo__lang-logo': 'visually-hidden'}" style="background-color:${setLangColor(data.language)}"></span>
-          <span class="${data.language ? 'repo__lang': 'visually-hidden'}">${data.language}</span>
+          <div class="${data.addinfo.languages !== null ? 'repo__languages-title': 'visually-hidden'}">Languages</div>  
+          <ul class="repo__languages">
+            ${getLanguage(data.addinfo.languages)}
+          </ul>
+          <div class="${data.addinfo.contributors !== null ? 'repo__contributors-title': 'visually-hidden'}">Contributors</div>  
+          <ul class="repo__contributors">
+            ${getContributors(data.addinfo.contributors)}
+          </ul>
+          <div class="${data.addinfo.pulls !== null ? 'repo__languages-pulls': 'visually-hidden'}">Pulls</div>  
+          <ul class="repo__pulls">
+            ${getPulls(data.addinfo.pulls)}
+          </ul>
           <a class="${data.stargazers_count !== 0 ? 'repo__star-link': 'visually-hidden'}" href="${data.stargazers_url}">
             <svg class="octicon octicon-star" aria-label="star" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14">
               <path fill-rule="evenodd" d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74z"></path>
@@ -109,4 +119,51 @@ function setLangColor(language) {
         color = '#2b7489';
     }
     return color;
+}
+
+function getLanguage(languages) {
+  let langList = '';
+  if(languages !== null) {
+    languages.forEach(lang => {
+      const element = `
+        <li>
+        <span class="${lang ? 'repo__lang-logo' : 'visually-hidden'}" style="background-color:${setLangColor(lang.name)}"></span>
+        <span class="${lang ? 'repo__lang' : 'visually-hidden'}">${lang.name}:</span>
+        <span class="${lang ? 'repo__lang' : 'visually-hidden'}">${lang.value}</span>    
+        </li>
+  `;
+      langList = langList + element;
+    });
+  }
+  return langList
+}
+function getContributors(contributors) {
+  let List = '';
+  if(contributors !== null) {
+    contributors.forEach(item => {
+      const element = `
+        <li>
+        <span class="${item ? 'repo__contributors-title' : 'visually-hidden'}"">${item.login}</span>
+        <a class="${item ? 'repo__contributors-link' : 'visually-hidden'}" href="${item.url}">view account</a> 
+        </li>
+  `;
+      List = List + element;
+    });
+  }
+  return List
+}
+function getPulls(pulls) {
+  let List = '';
+  if(pulls !== null) {
+    pulls.forEach(item => {
+      const element = `
+        <li>
+        <span class="${item ? 'repo__pulls-title' : 'visually-hidden'}">${item.title}</span>
+        <a class="${item ? 'repo__pulls-link' : 'visually-hidden'}" href="${item.html_url}">Link</a>  
+        </li>
+  `;
+      List = List + element;
+    });
+  }
+  return List
 }

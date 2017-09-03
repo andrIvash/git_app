@@ -67,6 +67,7 @@
 .repo__lang-logo {
   display: inline-block;
   width:10px;
+  max-width: 10px;
   height:10px;
   border-radius: 50%;
 }
@@ -95,4 +96,44 @@
   color: #337ab7;
 }
 .repo-time {
+}
+.repo__languages-title, .repo__contributors-title, .repo__pulls-title {
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+.repo__languages, .repo__contributors, .repo__pulls {
+  margin: 0 0 10px 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+.repo__languages li, .repo__contributors li, .repo__pulls li {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+.repo__languages li span, .repo__contributors li span, .repo__pulls li span, .repo__contributors li a, .repo__pulls li a{
+  margin-left: 10px;
+  flex: 1 1 30%;
+}
+.repo__languages li span:first-child, .repo__contributors li span:first-child , .repo__pulls li span:first-child{
+  margin-left: 0;
+}
+.repo__language a,
+.repo__language a:active,
+.repo__contributors a,
+.repo__pulls a,
+.repo__contributors a:active,
+.repo__pulls a:active {
+  font-size: 0.9rem;
+  color: #337ab7;
+  text-decoration: none;
+  position: relative;
+}
+.repo__language a:hover,
+.repo__contributors a:hover,
+.repo__pulls a:hover{
+  text-decoration: underline;
 }
