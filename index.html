@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, width=device-width">
+    <meta content="" name="author">
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="ie=edge" http-equiv="x-ua-compatible">
+    <link rel="stylesheet" href="assets/styles/app.bundle.css"><!--[if lt IE 9]>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script><![endif]-->
+    <title>git api
+    </title>
+  <link href="assets/styles/app.bundle.css" rel="stylesheet"></head>
+  <body>
+    <div class="wrapper">
+      <h1 class="title">Git api</h1>
+      <form class="login" id="login-form">
+        <fieldset class="login__fieldeset">
+          <legend class="login__legend">Enter name</legend>
+          <label class="login__label" for="username">Name</label>
+          <input class="login__input" name="username" id="username">
+        </fieldset>
+        <fieldset class="login__fieldeset">
+          <legend class="login__legend">Select type (name/company)</legend>
+          <input class="login__radio" type="radio" name="usertype" id="u-name" value="users">
+          <label class="login__label" for="u-name">User</label>
+          <input class="login__radio" type="radio" name="usertype" id="c-name" value="orgs">
+          <label class="login__label" for="c-name">Company</label>
+        </fieldset>
+        <button class="btn login__btn" type="submit">Send</button>
+      </form>
+<div class="projects visually-hidden">
+  <section class="projects__section">
+<form class="filters">
+  <fieldset class="filters__fieldeset">
+    <legend class="filters__legend">Filters</legend>
+    <ul class="filters__list">
+      <li class="filters__item">
+        <input class="filters__input" type="checkbox" id="hcount" name="count" value="true">
+        <label class="filters__label" for="hcount">Has open issues</label>
+      </li>
+      <li class="filters__item">
+        <input class="filters__input" type="checkbox" id="htopics" name="topics" value="true">
+        <label class="filters__label" for="htopics">Has topics</label>
+      </li>
+      <li class="filters__item">
+        <input class="filters__input" type="text" id="starred" name="starred" value="">
+        <label class="filters__label" for="starred">Starred >= X times</label>
+      </li>
+      <li class="filters__item">
+        <input class="filters__input" type="text" id="updated" name="updated" value="">
+        <label class="filters__label" for="updated">Updated after X date (XXXX.XX.XX)</label>
+      </li>
+      <li class="filters__item">
+        <div class="filters__block">
+          <div class="filters__block-title">Repo type</div>
+          <ul class="filters__list">
+            <li class="filters__item">
+              <input class="filters__input" type="radio" id="t-all" name="ftype" value="all" checked>
+              <label class="filters__label" for="t-all">All</label>
+            </li>
+            <li class="filters__item">
+              <input class="filters__input" type="radio" id="t-forks" name="ftype" value="forks">
+              <label class="filters__label" for="t-forks">Forks</label>
+            </li>
+            <li class="filters__item">
+              <input class="filters__input" type="radio" id="t-source" name="ftype" value="source">
+              <label class="filters__label" for="t-source">Sources</label>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+    <div class="filters__block">
+      <div class="filters__block-title">Language</div>
+      <ul class="filters__list">
+        <li class="filters__item">
+          <input class="filters__input" type="radio" id="l-all" name="language" value="all" checked>
+          <label class="filters__label" for="l-all">All</label>
+        </li>
+        <li class="filters__item">
+          <input class="filters__input" type="radio" id="l-js" name="language" value="JavaScript">
+          <label class="filters__label" for="l-js">Js</label>
+        </li>
+        <li class="filters__item">
+          <input class="filters__input" type="radio" id="l-html" name="language" value="HTML">
+          <label class="filters__label" for="l-html">Html</label>
+        </li>
+        <li class="filters__item">
+          <input class="filters__input" type="radio" id="l-css" name="language" value="CSS">
+          <label class="filters__label" for="l-css">Css</label>
+        </li>
+        <li class="filters__item">
+          <input class="filters__input" type="radio" id="l-other" name="language" value="Other">
+          <label class="filters__label" for="l-other">Other</label>
+        </li>
+      </ul>
+    </div>
+  </fieldset>
+  <fieldset class="filters__fieldeset">
+    <legend class="filters__legend">Sorting</legend>
+    <ul class="filters__list">
+      <li class="filters__item">
+        <input class="filters__radio" type="radio" name="sort" id="r-name" value="name" checked>
+        <label class="filters__label" for="r-name">Repo name</label>
+      </li>
+      <li class="filters__item">
+        <input class="filters__radio" type="radio" name="sort" id="s-count" value="stargazers_count">
+        <label class="filters__label" for="s-count">Stars count</label>
+      </li>
+      <li class="filters__item">
+        <input class="filters__radio" type="radio" name="sort" id="oi-count" value="open_issues_count">
+        <label class="filters__label" for="oi-count">Open issues count</label>
+      </li>
+      <li class="filters__item">
+        <input class="filters__radio" type="radio" name="sort" id="u-date" value="updated_at">
+        <label class="filters__label" for="u-date">Updated date</label>
+      </li>
+    </ul>
+    <button class="btn filters__btn" id="filtered" type="submit">Let's filter</button>
+  </fieldset>
+</form>
+  </section>
+  <section class="projects__section">
+    <ul class="repos projects__list"></ul><a class="btn projects__link visually-hidden" href="/" id="loadMore">Load More</a>
+  </section>
+</div>
+    </div>
+    <button class="btn back-btn visually-hidden">New search</button>
+    <div class="messages visually-hidden"></div>
+    <div class="modal visually-hidden">
+      <div class="modal__wrapper">
+        <div id="modal-repo"></div>
+        <button class="modal__exit" type="button">
+          <svg class="modal__svg" version="1.1" x="0px" y="0px" viewBox="0 0 47.971 47.971" xml:space="preserve">
+            <path d="M28.228,23.986L47.092,5.122c1.172-1.171,1.172-3.071,0-4.242c-1.172-1.172-3.07-1.172-4.242,0L23.986,19.744L5.121,0.88c-1.172-1.172-3.07-1.172-4.242,0c-1.172,1.171-1.172,3.071,0,4.242l18.865,18.864L0.879,42.85c-1.172,1.171-1.172,3.071,0,4.242C1.465,47.677,2.233,47.97,3,47.97s1.535-0.293,2.121-0.879l18.865-18.864L42.85,47.091c0.586,0.586,1.354,0.879,2.121,0.879s1.535-0.293,2.121-0.879c1.172-1.171,1.172-3.071,0-4.242L28.228,23.986z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  <script type="text/javascript" src="assets/scripts/app.bundle.js"></script></body>
+</html>
