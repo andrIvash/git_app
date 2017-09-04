@@ -3,44 +3,47 @@ form.filters
         legend.filters__legend Filters
         ul.filters__list
             li.filters__item
-                input.filters__input(type="checkbox" id="h-oi-count" name="h-oi-count" value="has-issue")
-                label.filters__label(for = "h-oi-count") Has open issues
+                input.filters__input(type="checkbox" id="hcount" name="count" value="true")
+                label.filters__label(for = "hcount") Has open issues
             li.filters__item
-                input.filters__input(type="checkbox" id="h-topics" name="h-topics" value="has-topics")
-                label.filters__label(for = "h-topics") Has topics
+                input.filters__input(type="checkbox" id="htopics" name="topics" value="true")
+                label.filters__label(for = "htopics") Has topics
             li.filters__item
                 input.filters__input(type="text" id="starred" name="starred" value="")
                 label.filters__label(for = "starred") Starred >= X times
             li.filters__item
                 input.filters__input(type="text" id="updated" name="updated" value="")
-                label.filters__label(for = "updated") Updated after X date
+                label.filters__label(for = "updated") Updated after X date (XXXX.XX.XX)
             li.filters__item
                 div.filters__block
                     .filters__block-title Repo type
                     ul.filters__list
                         li.filters__item
-                            input.filters__input(type="radio" id="t-all" name="f-type" value="all")
+                            input.filters__input(type="radio" id="t-all" name="ftype" value="all" checked)
                             label.filters__label(for = "t-all") All
                         li.filters__item
-                            input.filters__input(type="radio" id="t-forks" name="f-type" value="forks")
+                            input.filters__input(type="radio" id="t-forks" name="ftype" value="forks")
                             label.filters__label(for = "t-forks") Forks
                         li.filters__item
-                            input.filters__input(type="radio" id="t-source" name="f-type" value="source")
+                            input.filters__input(type="radio" id="t-source" name="ftype" value="source")
                             label.filters__label(for = "t-source") Sources
         div.filters__block
             .filters__block-title Language
             ul.filters__list
                 li.filters__item
-                    input.filters__input(type="radio" id="l-js" name="lang" value="js")
+                    input.filters__input(type="radio" id="l-all" name="language" value="all" checked)
+                    label.filters__label(for = "l-all") All
+                li.filters__item
+                    input.filters__input(type="radio" id="l-js" name="language" value="JavaScript")
                     label.filters__label(for = "l-js") Js
                 li.filters__item
-                    input.filters__input(type="radio" id="l-html" name="lang" value="html")
+                    input.filters__input(type="radio" id="l-html" name="language" value="HTML")
                     label.filters__label(for = "l-html") Html
                 li.filters__item
-                    input.filters__input(type="radio" id="l-css" name="lang" value="css")
+                    input.filters__input(type="radio" id="l-css" name="language" value="CSS")
                     label.filters__label(for = "l-css") Css
                 li.filters__item
-                    input.filters__input(type="radio" id="l-other" name="lang" value="other")
+                    input.filters__input(type="radio" id="l-other" name="language" value="Other")
                     label.filters__label(for = "l-other") Other
 
 
@@ -51,11 +54,12 @@ form.filters
                 input.filters__radio(type = "radio", name = "sort", id = "r-name" value = "name" checked)
                 label.filters__label(for = "r-name") Repo name
             li.filters__item
-                input.filters__radio(type = "radio", name = "sort", id = "s-count" value = "count")
+                input.filters__radio(type = "radio", name = "sort", id = "s-count" value = "stargazers_count")
                 label.filters__label(for = "s-count") Stars count
             li.filters__item
-                input.filters__radio(type = "radio", name = "sort", id = "oi-count" value = "issue")
+                input.filters__radio(type = "radio", name = "sort", id = "oi-count" value = "open_issues_count")
                 label.filters__label(for = "oi-count") Open issues count
             li.filters__item
-                input.filters__radio(type = "radio", name = "sort", id = "u-date" value = "date")
+                input.filters__radio(type = "radio", name = "sort", id = "u-date" value = "updated_at")
                 label.filters__label(for = "u-date") Updated date
+        button.btn.filters__btn#filtered(type = "submit") Let's filter

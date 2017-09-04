@@ -55,3 +55,10 @@
 .filters__block-title {
     margin-top: 10px ;
 }
+
+.filters__btn {
+    margin-top: 20px;
+    position: absolute;
+    bottom: 28px;
+    right: 15px;
+}

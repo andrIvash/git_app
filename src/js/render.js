@@ -7,6 +7,7 @@
 export function renderTemplate(container, data, single) {
   const wrapper = document.querySelector(container);
   const fragment = document.createDocumentFragment();
+  wrapper.innerHTML = '';
 
   if (!single) {
     data.forEach((repo, indx) => {
@@ -56,22 +57,22 @@ export function renderTemplate(container, data, single) {
               <a class="repo__link" href="${data.html_url}">${data.name}</a>
           </h3>
           <div class="${data.fork ? 'repo__fork': 'visually-hidden'}">Forked from   
-              <a class="repo__fork-link" href="${data.addinfo.fork.url}">${data.addinfo.fork.name} </a>
+              <a class="repo__fork-link" href="${data.addinfo.fork !== null ? data.addinfo.fork.url : '/'}">${data.addinfo.fork !== null ? data.addinfo.fork.name : ''}</a>
           </div>
         </header>
         <main class="repo__main">
           <p class="${data.description ? 'repo__desq': 'visually-hidden'}">${data.description}</p>
         </main>
         <footer class="repo__footer">
-          <div class="${data.addinfo.languages !== null ? 'repo__languages-title': 'visually-hidden'}">Languages</div>  
+          <div class="${(data.addinfo.languages !== null && data.addinfo.languages.length !== 0 )? 'repo__languages-title': 'visually-hidden'}">Languages</div>  
           <ul class="repo__languages">
             ${getLanguage(data.addinfo.languages)}
           </ul>
-          <div class="${data.addinfo.contributors !== null ? 'repo__contributors-title': 'visually-hidden'}">Contributors</div>  
+          <div class="${(data.addinfo.contributors !== null && data.addinfo.contributors.length !== 0) ? 'repo__contributors-title': 'visually-hidden'}">Contributors</div>  
           <ul class="repo__contributors">
             ${getContributors(data.addinfo.contributors)}
           </ul>
-          <div class="${data.addinfo.pulls !== null ? 'repo__languages-pulls': 'visually-hidden'}">Pulls</div>  
+          <div class="${(data.addinfo.pulls !== null && data.addinfo.contributors.length !== 0) ? 'repo__languages-pulls': 'visually-hidden'}">Pulls</div>  
           <ul class="repo__pulls">
             ${getPulls(data.addinfo.pulls)}
           </ul>
@@ -121,9 +122,15 @@ function setLangColor(language) {
     return color;
 }
 
+
+/**
+ * Get languages
+ * @param {Array} languages
+ * @returns {string}
+ */
 function getLanguage(languages) {
   let langList = '';
-  if(languages !== null) {
+  if(languages !== null && languages.length !== 0) {
     languages.forEach(lang => {
       const element = `
         <li>
@@ -137,14 +144,20 @@ function getLanguage(languages) {
   }
   return langList
 }
+
+/**
+ * Get contributors list
+ * @param {Array} contributors
+ * @returns {string}
+ */
 function getContributors(contributors) {
   let List = '';
-  if(contributors !== null) {
+  if(contributors !== null && contributors.length !== 0) {
     contributors.forEach(item => {
       const element = `
         <li>
-        <span class="${item ? 'repo__contributors-title' : 'visually-hidden'}"">${item.login}</span>
-        <a class="${item ? 'repo__contributors-link' : 'visually-hidden'}" href="${item.url}">view account</a> 
+        <span class="${item ? 'repo__contributors-subtitle' : 'visually-hidden'}"">${item.login}</span>
+        <a class="${item ? 'repo__contributors-link' : 'visually-hidden'}" href="${item.html_url}">view account</a> 
         </li>
   `;
       List = List + element;
@@ -152,13 +165,19 @@ function getContributors(contributors) {
   }
   return List
 }
+
+/**
+ * Get pulls
+ * @param {Array} pulls
+ * @returns {string}
+ */
 function getPulls(pulls) {
   let List = '';
-  if(pulls !== null) {
+  if(pulls !== null && pulls.length !== 0) {
     pulls.forEach(item => {
       const element = `
         <li>
-        <span class="${item ? 'repo__pulls-title' : 'visually-hidden'}">${item.title}</span>
+        <span class="${item ? 'repo__pulls-subtitle' : 'visually-hidden'}">${item.title}</span>
         <a class="${item ? 'repo__pulls-link' : 'visually-hidden'}" href="${item.html_url}">Link</a>  
         </li>
   `;

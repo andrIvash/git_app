@@ -2,6 +2,7 @@ export function getAll(url) {
   return new Promise(function(resolve, reject) { // return new Promise
     var req = new XMLHttpRequest();
     req.open('GET', url);
+    req.setRequestHeader("Accept","application/vnd.github.mercy-preview+json");
     req.onload = function() {
       if (req.status == 200) {
         const header = req.getResponseHeader('Link');
